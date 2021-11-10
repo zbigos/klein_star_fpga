@@ -88,7 +88,23 @@ def emit_dqgroup(repr) -> List[str]:
         voff += 1
 
     return dqgroup_f
-    exit(1)
+
+def emit_serdes(repr) -> List[str]:
+    serdes_f: List[str] = []
+    offset = 5
+    pinset = [(f.function, f) for f in repr[None]]
+    for _, pin in sorted(pinset):
+        serdes_f.append(f"""      (pin input line (at -5.08 {-offset * 2.54} 0) (length 5.08)""")
+        serdes_f.append(f"""        (name "{pin.function}/{pin.dual}" (effects (font (size 1.27 1.27))))""")
+        serdes_f.append(f"""        (number "{pin.pin_designator}" (effects (font (size 1.27 1.27))))""")
+        serdes_f.append(f"""      )""")
+        offset += 1
+
+    serdes_f.append(f"""      (rectangle (start 0 0) (end 45 {-offset * 2.54})""")
+    serdes_f.append(f"""        (stroke (width 0.001)) (fill (type background))""")
+    serdes_f.append(f"""      )""")
+
+    return serdes_f
 
 def emit_sparsegroup(repr) -> List[str]:
     sparsegroup_f: List[str] = []
@@ -161,8 +177,10 @@ def generate_symbol(repr, sym_name: str, bank: str, bit: int) -> List[str]:
         symrepr += emit_sparsegroup(repr)
     elif bank in [2, 3, 6, 7]:
         symrepr += emit_dqgroup(repr)
+    elif bank in ["SERDES", "SWD"]:
+        symrepr += emit_serdes(repr)
     else:
-        print(bank, repr.keys())
+        print(bank, repr.keys(), repr)
 
     symrepr.append(f"""    )""")
     return symrepr
