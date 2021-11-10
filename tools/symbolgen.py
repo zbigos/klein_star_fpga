@@ -112,9 +112,6 @@ def emit_sparsegroup(repr) -> List[str]:
 
     powerpins = pinset[None]
     del pinset[None]
-
-    print([str(pp) for pp in powerpins])
-
     offset = 5
 
     for pioff, (piok, pioset) in enumerate(sorted(pinset.items())):
@@ -155,6 +152,31 @@ def emit_sparsegroup(repr) -> List[str]:
 
     return sparsegroup_f
 
+
+def emit_power(repr) -> List[str]:
+    pblok_f: List[str] = []
+    offset = 3
+    pinset = [(f.function, f.pin_designator, f) for f in repr[None]]
+    lpin = pinset[0][2]
+
+    for _, _, pin in sorted(pinset):
+        if lpin.function != pin.function:
+            offset += 2
+        lpin = pin
+
+        pblok_f.append(f"""      (pin input line (at -5.08 {-offset * 2.54} 0) (length 5.08)""")
+        pblok_f.append(f"""        (name "{pin.function}/{pin.dual}" (effects (font (size 1.27 1.27))))""")
+        pblok_f.append(f"""        (number "{pin.pin_designator}" (effects (font (size 1.27 1.27))))""")
+        pblok_f.append(f"""      )""")
+        offset += 1
+
+    pblok_f.append(f"""      (rectangle (start 0 0) (end 45 {-offset * 2.54})""")
+    pblok_f.append(f"""        (stroke (width 0.001)) (fill (type background))""")
+    pblok_f.append(f"""      )""")
+
+    return pblok_f
+
+
 def generate_symbol(repr, sym_name: str, bank: str, bit: int) -> List[str]:
     print(f"======= symbol {bank}")
     symrepr: List[str] = []
@@ -179,6 +201,8 @@ def generate_symbol(repr, sym_name: str, bank: str, bit: int) -> List[str]:
         symrepr += emit_dqgroup(repr)
     elif bank in ["SERDES", "SWD"]:
         symrepr += emit_serdes(repr)
+    elif bank in ["Power"]:
+        symrepr += emit_power(repr)
     else:
         print(bank, repr.keys(), repr)
 
