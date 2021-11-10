@@ -24,6 +24,72 @@ def generate_footer() -> List[str]:
     footer.append(f""")""")
     return footer
 
+def emit_dqgroup(repr) -> List[str]:
+    dqgroup_f: List[str] = []
+    powerpins = repr[None]
+    del repr[None]
+    print([str(pp) for pp in powerpins])
+
+    offset = 5
+    toffset = -10
+
+    for dqoff, (dqname, dqpios) in enumerate(sorted(repr.items())):
+        toffset = offset
+        offset += 1
+        for pioff, (pionum, piopins) in enumerate(sorted(dqpios.items())):
+            piodump = [(p.pio_group, p) for p in piopins]
+            for _, pin in sorted(piodump):
+                dqgroup_f.append(f"""      (pin input line (at -5.08 {-offset * 2.54} 0) (length 5.08)""")
+                dqgroup_f.append(f"""        (name "{pin.function}/{pin.dual}" (effects (font (size 1.27 1.27))))""")
+                dqgroup_f.append(f"""        (number "{pin.pin_designator}" (effects (font (size 1.27 1.27))))""")
+                dqgroup_f.append(f"""      )""")
+                offset += 1
+            offset += 1
+            dqgroup_f.append(f"""      (text "PIO: {pionum}" (at 3 {-(offset - 6) * 2.54} 0)""")
+            dqgroup_f.append(f"""        (effects (font (size 0.8 0.8)))""")
+            dqgroup_f.append(f"""      )""")
+
+            dqgroup_f.append(f"""      (polyline""")
+            dqgroup_f.append(f"""        (pts""")
+            dqgroup_f.append(f"""          (xy 0 {-(offset - 1.5) * 2.54})""")
+            dqgroup_f.append(f"""          (xy 20 {-(offset - 1.5) * 2.54})""")
+            dqgroup_f.append(f"""          (xy 20 {-(offset - 5.5) * 2.54})""")
+            dqgroup_f.append(f"""          (xy 0 {-(offset - 5.5) * 2.54})""")
+            dqgroup_f.append(f"""        )""")
+            dqgroup_f.append(f"""        (stroke (width 0.0006)) (fill (type none))""")
+            dqgroup_f.append(f"""      )""")
+
+        dqgroup_f.append(f"""      (text "DQgroup: {dqname}" (at 6.35 {-(toffset - 1) * 2.54} 0)""")
+        dqgroup_f.append(f"""        (effects (font (size 0.8 0.8)))""")
+        dqgroup_f.append(f"""      )""")
+
+        offset += 1
+        dqgroup_f.append(f"""      (polyline""")
+        dqgroup_f.append(f"""        (pts""")
+        dqgroup_f.append(f"""          (xy 0 {-(offset - 1.5) * 2.54})""")
+        dqgroup_f.append(f"""          (xy 22.5 {-(offset - 1.5) * 2.54})""")
+        dqgroup_f.append(f"""          (xy 22.5 {-(toffset - 0.5) * 2.54})""")
+        dqgroup_f.append(f"""          (xy 0 {-(toffset - 0.5) * 2.54})""")
+        dqgroup_f.append(f"""        )""")
+        dqgroup_f.append(f"""        (stroke (width 0.0006)) (fill (type none))""")
+        dqgroup_f.append(f"""      )""")
+        offset += 1
+
+
+    dqgroup_f.append(f"""      (rectangle (start 0 0) (end 45 {-offset * 2.54})""")
+    dqgroup_f.append(f"""        (stroke (width 0.001)) (fill (type background))""")
+    dqgroup_f.append(f"""      )""")
+    voff = 15
+    for pp in powerpins:
+        dqgroup_f.append(f"""      (pin input line (at {voff * 2.54} 5.08 270) (length 5.08)""")
+        dqgroup_f.append(f"""        (name "{pp.function}/{pp.dual}" (effects (font (size 1.27 1.27))))""")
+        dqgroup_f.append(f"""        (number "{pp.pin_designator}" (effects (font (size 1.27 1.27))))""")
+        dqgroup_f.append(f"""      )""")
+        voff += 1
+
+    return dqgroup_f
+    exit(1)
+
 def emit_sparsegroup(repr) -> List[str]:
     sparsegroup_f: List[str] = []
     pinset = repr[None]
@@ -66,7 +132,7 @@ def emit_sparsegroup(repr) -> List[str]:
     voff = 15
     for pp in powerpins:
         sparsegroup_f.append(f"""      (pin input line (at {voff * 2.54} 5.08 270) (length 5.08)""")
-        sparsegroup_f.append(f"""        (name "{pp.function}/{pin.dual}" (effects (font (size 1.27 1.27))))""")
+        sparsegroup_f.append(f"""        (name "{pp.function}/{pp.dual}" (effects (font (size 1.27 1.27))))""")
         sparsegroup_f.append(f"""        (number "{pp.pin_designator}" (effects (font (size 1.27 1.27))))""")
         sparsegroup_f.append(f"""      )""")
         voff += 1
@@ -93,6 +159,10 @@ def generate_symbol(repr, sym_name: str, bank: str, bit: int) -> List[str]:
     
     if bank in [0, 1]:
         symrepr += emit_sparsegroup(repr)
+    elif bank in [2, 3, 6, 7]:
+        symrepr += emit_dqgroup(repr)
+    else:
+        print(bank, repr.keys())
 
     symrepr.append(f"""    )""")
     return symrepr
