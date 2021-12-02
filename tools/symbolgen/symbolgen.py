@@ -178,30 +178,30 @@ def emit_power(repr) -> List[str]:
 
 
 def generate_symbol(repr, sym_name: str, bank: str, bit: int) -> List[str]:
-    print(f"======= symbol {bank}")
+    print(f'======= symbol {bank}')
     symrepr: List[str] = []
     symrepr.append(f"""    (symbol "{sym_name}_{bit}_0" """)
-    
+
     if bank == None:
-        bank = "Power"
-    
+        bank = 'Power'
+
     if bank == 50:
-        bank = "SERDES"
+        bank = 'SERDES'
 
     if bank == 40:
-        bank = "SWD"
+        bank = 'SWD'
 
     symrepr.append(f"""      (text "Bank: {bank}" (at 15 -5 0)""")
     symrepr.append(f"""        (effects (font (size 5 5)))""")
     symrepr.append(f"""      )""")
-    
+
     if bank in [0, 1]:
         symrepr += emit_sparsegroup(repr)
     elif bank in [2, 3, 6, 7]:
         symrepr += emit_dqgroup(repr)
-    elif bank in ["SERDES", "SWD"]:
+    elif bank in ['SERDES', 'SWD']:
         symrepr += emit_serdes(repr)
-    elif bank in ["Power"]:
+    elif bank in ['Power']:
         symrepr += emit_power(repr)
     else:
         print(bank, repr.keys(), repr)
@@ -215,4 +215,4 @@ def generate_thing(sym_name: str, repr) -> str:
     for bit, bankname in enumerate(repr.keys()):
         sym_repr += generate_symbol(repr[bankname], sym_name, bankname, bit + 1)
     sym_repr += generate_footer()
-    return "\n".join(sym_repr)
+    return '\n'.join(sym_repr)

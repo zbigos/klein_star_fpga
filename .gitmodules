@@ -1,0 +1,93 @@
+[submodule "ext/litex"]
+	path = ext/litex
+	url = git@github.com:enjoy-digital/litex
+[submodule "ext/linux-on-litex-vexriscv"]
+	path = ext/linux-on-litex-vexriscv
+	url = git@github.com:litex-hub/linux-on-litex-vexriscv
+[submodule "ext/migen"]
+	path = ext/migen
+	url = git@github.com:m-labs/migen
+[submodule "ext/nmigen"]
+	path = ext/nmigen
+	url = git@github.com:nmigen/nmigen
+[submodule "ext/pythondata-software-picolibc"]
+	path = ext/pythondata-software-picolibc
+	url = git@github.com:litex-hub/pythondata-software-picolibc
+[submodule "ext/pythondata-software-compiler_rt"]
+	path = ext/pythondata-software-compiler_rt
+	url = git@github.com:litex-hub/pythondata-software-compiler_rt
+[submodule "ext/liteeth"]
+	path = ext/liteeth
+	url = git@github.com:enjoy-digital/liteeth
+[submodule "ext/litedram"]
+	path = ext/litedram
+	url = git@github.com:enjoy-digital/litedram
+[submodule "ext/litepcie"]
+	path = ext/litepcie
+	url = git@github.com:enjoy-digital/litepcie
+[submodule "ext/litesata"]
+	path = ext/litesata
+	url = git@github.com:enjoy-digital/litesata
+[submodule "ext/litesdcard"]
+	path = ext/litesdcard
+	url = git@github.com:enjoy-digital/litesdcard
+[submodule "ext/liteiclink"]
+	path = ext/liteiclink
+	url = git@github.com:enjoy-digital/liteiclink
+[submodule "ext/litescope"]
+	path = ext/litescope
+	url = git@github.com:enjoy-digital/litescope
+[submodule "ext/litejesd204b"]
+	path = ext/litejesd204b
+	url = git@github.com:enjoy-digital/litejesd204b
+[submodule "ext/litespi"]
+	path = ext/litespi
+	url = git@github.com:litex-hub/litespi
+[submodule "ext/litehyperbus"]
+	path = ext/litehyperbus
+	url = git@github.com:litex-hub/litehyperbus
+[submodule "ext/litex-boards"]
+	path = ext/litex-boards
+	url = git@github.com:litex-hub/litex-boards
+[submodule "ext/pythondata-misc-tapcfg"]
+	path = ext/pythondata-misc-tapcfg
+	url = git@github.com:litex-hub/pythondata-misc-tapcfg
+[submodule "ext/pythondata-misc-usb_ohci"]
+	path = ext/pythondata-misc-usb_ohci
+	url = git@github.com:litex-hub/pythondata-misc-usb_ohci
+[submodule "ext/pythondata-cpu-lm32"]
+	path = ext/pythondata-cpu-lm32
+	url = git@github.com:litex-hub/pythondata-cpu-lm32
+[submodule "ext/pythondata-cpu-mor1kx"]
+	path = ext/pythondata-cpu-mor1kx
+	url = git@github.com:litex-hub/pythondata-cpu-mor1kx
+[submodule "ext/pythondata-cpu-picorv32"]
+	path = ext/pythondata-cpu-picorv32
+	url = git@github.com:litex-hub/pythondata-cpu-picorv32
+[submodule "ext/pythondata-cpu-serv"]
+	path = ext/pythondata-cpu-serv
+	url = git@github.com:litex-hub/pythondata-cpu-serv
+[submodule "ext/pythondata-cpu-vexriscv"]
+	path = ext/pythondata-cpu-vexriscv
+	url = git@github.com:litex-hub/pythondata-cpu-vexriscv
+[submodule "ext/pythondata-cpu-vexriscv-smp"]
+	path = ext/pythondata-cpu-vexriscv-smp
+	url = git@github.com:litex-hub/pythondata-cpu-vexriscv-smp
+[submodule "ext/pythondata-cpu-rocket"]
+	path = ext/pythondata-cpu-rocket
+	url = git@github.com:litex-hub/pythondata-cpu-rocket
+[submodule "ext/pythondata-cpu-minerva"]
+	path = ext/pythondata-cpu-minerva
+	url = git@github.com:litex-hub/pythondata-cpu-minerva
+[submodule "ext/pythondata-cpu-microwatt"]
+	path = ext/pythondata-cpu-microwatt
+	url = git@github.com:litex-hub/pythondata-cpu-microwatt
+[submodule "ext/pythondata-cpu-blackparrot"]
+	path = ext/pythondata-cpu-blackparrot
+	url = git@github.com:litex-hub/pythondata-cpu-blackparrot
+[submodule "ext/pythondata-cpu-cv32e40p"]
+	path = ext/pythondata-cpu-cv32e40p
+	url = git@github.com:litex-hub/pythondata-cpu-cv32e40p
+[submodule "ext/pythondata-cpu-ibex"]
+	path = ext/pythondata-cpu-ibex
+	url = git@github.com:litex-hub/pythondata-cpu-ibex
