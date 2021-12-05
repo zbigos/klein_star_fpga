@@ -1,5 +1,6 @@
 from typing import List
 
+
 def generate_header(sym_name: str) -> List[str]:
     header: List[str] = []
     header.append(f"""(kicad_symbol_lib (version 20201005) (generator kicad_symbol_editor)""")
@@ -10,7 +11,8 @@ def generate_header(sym_name: str) -> List[str]:
     header.append(f"""    (property "Value" "{sym_name}" (id 1) (at 0 5 0)""")
     header.append(f"""      (effects (font (size 1.27 1.27)))""")
     header.append(f"""    )""")
-    header.append(f"""    (property "Footprint" "Package_BGA:Lattice_caBGA-381_17.0x17.0mm_Layout20x20_P0.8mm_Ball0.4mm_Pad0.4mm_NSMD" (id 2) (at 0 8 0)""")
+    header.append(
+        f"""    (property "Footprint" "Package_BGA:Lattice_caBGA-381_17.0x17.0mm_Layout20x20_P0.8mm_Ball0.4mm_Pad0.4mm_NSMD" (id 2) (at 0 8 0)""")
     header.append(f"""      (effects (font (size 1.27 1.27)) hide)""")
     header.append(f"""    )""")
     header.append(f"""    (property "Datasheet" "" (id 3) (at 0 0 0)""")
@@ -18,11 +20,13 @@ def generate_header(sym_name: str) -> List[str]:
     header.append(f"""    )""")
     return header
 
+
 def generate_footer() -> List[str]:
     footer: List[str] = []
     footer.append(f"""  )""")
     footer.append(f""")""")
     return footer
+
 
 def emit_dqgroup(repr) -> List[str]:
     dqgroup_f: List[str] = []
@@ -40,7 +44,8 @@ def emit_dqgroup(repr) -> List[str]:
             piodump = [(p.pio_group, p) for p in piopins]
             for _, pin in sorted(piodump):
                 dqgroup_f.append(f"""      (pin input line (at -5.08 {-offset * 2.54} 0) (length 5.08)""")
-                dqgroup_f.append(f"""        (name "{pin.function}/{pin.dqs}/{pin.dual}" (effects (font (size 1.27 1.27))))""")
+                dqgroup_f.append(
+                    f"""        (name "{pin.function}/{pin.dqs}/{pin.dual}" (effects (font (size 1.27 1.27))))""")
                 dqgroup_f.append(f"""        (number "{pin.pin_designator}" (effects (font (size 1.27 1.27))))""")
                 dqgroup_f.append(f"""      )""")
                 offset += 1
@@ -75,7 +80,6 @@ def emit_dqgroup(repr) -> List[str]:
         dqgroup_f.append(f"""      )""")
         offset += 1
 
-
     dqgroup_f.append(f"""      (rectangle (start 0 0) (end 45 {-offset * 2.54})""")
     dqgroup_f.append(f"""        (stroke (width 0.001)) (fill (type background))""")
     dqgroup_f.append(f"""      )""")
@@ -88,6 +92,7 @@ def emit_dqgroup(repr) -> List[str]:
         voff += 1
 
     return dqgroup_f
+
 
 def emit_serdes(repr) -> List[str]:
     serdes_f: List[str] = []
@@ -105,6 +110,7 @@ def emit_serdes(repr) -> List[str]:
     serdes_f.append(f"""      )""")
 
     return serdes_f
+
 
 def emit_sparsegroup(repr) -> List[str]:
     sparsegroup_f: List[str] = []
@@ -208,6 +214,7 @@ def generate_symbol(repr, sym_name: str, bank: str, bit: int) -> List[str]:
 
     symrepr.append(f"""    )""")
     return symrepr
+
 
 def generate_thing(sym_name: str, repr) -> str:
     sym_repr = []
