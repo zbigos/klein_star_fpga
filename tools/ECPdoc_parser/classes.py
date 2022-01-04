@@ -19,12 +19,12 @@ class Pin:
         self.function: str = pin_function
         self.pad: int = pad
         self.dual: str = dual
-        
-        if dqs == "-":
+
+        if dqs == '-':
             self.dqs = None
         else:
             self.dqs: str = dqs
-    
+
         self.row = pin_designator[0]
         if len(pin_designator) == 2:
             self.col = pin_designator[1]
@@ -47,11 +47,11 @@ class Pin:
 
 
     def __str__(self) -> str:
-        return f"{self.row}{self.col}: ({self.function}) (pio: {self.pio_side} {self.pio_num} {self.pio_group}) , dqs: {self.dqs})"
+        return f'{self.row}{self.col}: ({self.function}) (pio: {self.pio_side} {self.pio_num} {self.pio_group}) , dqs: {self.dqs})'
 
     @property
     def pin_designator(self) -> str:
-        return f"{self.row}{self.col}"
+        return f'{self.row}{self.col}'
 
 class FPGA:
     """
@@ -65,28 +65,28 @@ class FPGA:
 
     def add_pin(self, pin: Pin) -> None:
         if pin.pin_designator in self.pins.keys():
-            logging.critical(f"you are trying to add {pin.pin_designator} but there already exists one!")
-            logging.critical(f"current {str(self.pins[pin.pin_designator])}")
-            logging.critical(f"incoming {str(pin)}")
-            logging.critical("FAILING HARD")
+            logging.critical(f'you are trying to add {pin.pin_designator} but there already exists one!')
+            logging.critical(f'current {str(self.pins[pin.pin_designator])}')
+            logging.critical(f'incoming {str(pin)}')
+            logging.critical('FAILING HARD')
             sys.exit()
 
         self.pins[pin.pin_designator] = pin
 
     def info(self) -> str:
-        print(f"total pins: {len(self.pins.keys())}")
+        print(f'total pins: {len(self.pins.keys())}')
 
     def treeify(self, pin_dump: Dict[Optional[str], Dict[Optional[str], List[Pin]]]):
         tree = Tree()
 
         fpid = uuid.uuid4()
-        tree.create_node("fpga", fpid)
+        tree.create_node('fpga', fpid)
         for bank, bcontents in pin_dump.items():
             bid = uuid.uuid4()
-            tree.create_node("bank: " + str(bank), bid, parent=fpid)
+            tree.create_node('bank: ' + str(bank), bid, parent=fpid)
             for dqs, dcontents in bcontents.items():
                 dqid = uuid.uuid4()
-                tree.create_node("dqs: " + str(dqs), dqid, parent=bid)
+                tree.create_node('dqs: ' + str(dqs), dqid, parent=bid)
                 if isinstance(dcontents, dict):
                     for gname, gpins in dcontents.items():
                         pid = uuid.uuid4()
@@ -97,7 +97,7 @@ class FPGA:
                 else:
                     for pin in dcontents:
                         pid = uuid.uuid4()
-                        tree.create_node(f"{str(pin)} {type(pin)}", pid, parent=dqid)
+                        tree.create_node(f'{str(pin)} {type(pin)}', pid, parent=dqid)
         tree.show()
 
     def dump_groups(self) -> Dict[str, Pin]:
@@ -122,10 +122,10 @@ class FPGA:
                 except ValueError:
                     pass
 
-            return arg[0:3] + "".join(str(i) for i in intl)
+            return arg[0:3] + ''.join(str(i) for i in intl)
 
         resd: Dict[str, List[Pin]] = {}
-        
+
         dqqset: Set[str] = set(unify(p.dqs) for p in pins)
 
         for dqs in dqqset:
@@ -140,7 +140,7 @@ class FPGA:
         resd: Dict[str, List[Pin]] = {}
         pioset: Set[str] = set(p.pio_num for p in pins)
         if len(pioset) < 2:
-            return False, {} 
+            return False, {}
 
         for pio in pioset:
             resd[pio] = []
