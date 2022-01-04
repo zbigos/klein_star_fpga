@@ -10,6 +10,7 @@ import uuid
 import matplotlib.patches as patches
 from treelib import Node, Tree
 
+
 class Pin:
     """
         dataclass for storing info about fpga pin.
@@ -45,13 +46,13 @@ class Pin:
             self.pio_group = None
             self.pio_num = None
 
-
     def __str__(self) -> str:
         return f'{self.row}{self.col}: ({self.function}) (pio: {self.pio_side} {self.pio_num} {self.pio_group}) , dqs: {self.dqs})'
 
     @property
     def pin_designator(self) -> str:
         return f'{self.row}{self.col}'
+
 
 class FPGA:
     """

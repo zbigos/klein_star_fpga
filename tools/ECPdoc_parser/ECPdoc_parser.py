@@ -10,12 +10,12 @@ with open('pinout.csv', 'r') as f:
             if pp != '-':
                 pins.append(
                     Pin(
-                        pad = int(pad),
-                        dual = dual,
-                        pin_function = pin_ball,
-                        pin_designator = pp,
-                        bank = bank,
-                        dqs = dqs
+                        pad=int(pad),
+                        dual=dual,
+                        pin_function=pin_ball,
+                        pin_designator=pp,
+                        bank=bank,
+                        dqs=dqs
                     )
                 )
         except Exception as e:
@@ -39,7 +39,7 @@ for k, v in group_dump.items():
         if succ:
             group_dump[k][gname] = nd
 
-#for bank, v in group_dump.items():
+# for bank, v in group_dump.items():
 #    print(f"{bank}:")
 #    for dqs, pins in v.items():
 #        print(f"    {dqs} {[p.pin_designator for p in pins]}")
