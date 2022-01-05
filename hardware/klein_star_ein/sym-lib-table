@@ -1,4 +1,5 @@
 (sym_lib_table
   (lib (name "MT41K512M16")(type "KiCad")(uri "${KIPRJMOD}/../lib/MT41K512M16.kicad_sym")(options "")(descr ""))
   (lib (name "ECP5UM25")(type "KiCad")(uri "${KIPRJMOD}/../lib/ECP5UM25.kicad_sym")(options "")(descr ""))
+  (lib (name "SN74ALVC245PWR")(type "KiCad")(uri "${KIPRJMOD}/../lib/SN74ALVC245PWR.kicad_sym")(options "")(descr ""))
 )
