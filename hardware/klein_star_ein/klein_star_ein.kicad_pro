@@ -45,7 +45,7 @@
         "silk_text_upright": false,
         "zones": {
           "45_degree_only": false,
-          "min_clearance": 0.15
+          "min_clearance": 0.09999999999999999
         }
       },
       "diff_pair_dimensions": [
@@ -364,10 +364,10 @@
     "classes": [
       {
         "bus_width": 6.0,
-        "clearance": 0.13,
+        "clearance": 0.09,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
-        "diff_pair_width": 0.2,
+        "diff_pair_width": 0.09,
         "line_style": 0,
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
@@ -378,12 +378,179 @@
         "via_diameter": 0.8,
         "via_drill": 0.4,
         "wire_width": 6.0
+      },
+      {
+        "bus_width": 6.0,
+        "clearance": 0.09,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.09,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "DQ0",
+        "nets": [
+          "/DRAM_DATA_0",
+          "/DRAM_DATA_1",
+          "/DRAM_DATA_2",
+          "/DRAM_DATA_3",
+          "/DRAM_DATA_4",
+          "/DRAM_DATA_5",
+          "/DRAM_DATA_6",
+          "/DRAM_DATA_7",
+          "/DRAM_DM0",
+          "/DRAM_DQS0_N",
+          "/DRAM_DQS0_P"
+        ],
+        "pcb_color": "rgb(9, 0, 255)",
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.25,
+        "via_diameter": 0.8,
+        "via_drill": 0.4,
+        "wire_width": 6.0
+      },
+      {
+        "bus_width": 6.0,
+        "clearance": 0.09,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.09,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "DQ1",
+        "nets": [
+          "/DRAM_DATA_10",
+          "/DRAM_DATA_11",
+          "/DRAM_DATA_12",
+          "/DRAM_DATA_13",
+          "/DRAM_DATA_14",
+          "/DRAM_DATA_15",
+          "/DRAM_DATA_8",
+          "/DRAM_DATA_9",
+          "/DRAM_DM1",
+          "/DRAM_DQS1_N",
+          "/DRAM_DQS1_P"
+        ],
+        "pcb_color": "rgb(0, 255, 167)",
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.25,
+        "via_diameter": 0.8,
+        "via_drill": 0.4,
+        "wire_width": 6.0
+      },
+      {
+        "bus_width": 6.0,
+        "clearance": 0.09,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.09,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "DQ2",
+        "nets": [
+          "/DRAM_DATA_16",
+          "/DRAM_DATA_17",
+          "/DRAM_DATA_18",
+          "/DRAM_DATA_19",
+          "/DRAM_DATA_20",
+          "/DRAM_DATA_21",
+          "/DRAM_DATA_22",
+          "/DRAM_DATA_23",
+          "/DRAM_DM2",
+          "/DRAM_DQS2_N",
+          "/DRAM_DQS2_P"
+        ],
+        "pcb_color": "rgb(0, 174, 255)",
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.25,
+        "via_diameter": 0.8,
+        "via_drill": 0.4,
+        "wire_width": 6.0
+      },
+      {
+        "bus_width": 6.0,
+        "clearance": 0.09,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.09,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "DQ3",
+        "nets": [
+          "/DRAM_DATA_24",
+          "/DRAM_DATA_25",
+          "/DRAM_DATA_26",
+          "/DRAM_DATA_27",
+          "/DRAM_DATA_28",
+          "/DRAM_DATA_29",
+          "/DRAM_DATA_30",
+          "/DRAM_DATA_31",
+          "/DRAM_DM3",
+          "/DRAM_DQS3_N",
+          "/DRAM_DQS3_P"
+        ],
+        "pcb_color": "rgb(1, 219, 255)",
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.25,
+        "via_diameter": 0.8,
+        "via_drill": 0.4,
+        "wire_width": 6.0
+      },
+      {
+        "bus_width": 6.0,
+        "clearance": 0.09,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.09,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "DRAM_CONTROL",
+        "nets": [
+          "/DRAM_ADDR_0",
+          "/DRAM_ADDR_1",
+          "/DRAM_ADDR_10",
+          "/DRAM_ADDR_11",
+          "/DRAM_ADDR_12",
+          "/DRAM_ADDR_13",
+          "/DRAM_ADDR_14",
+          "/DRAM_ADDR_15",
+          "/DRAM_ADDR_2",
+          "/DRAM_ADDR_3",
+          "/DRAM_ADDR_4",
+          "/DRAM_ADDR_5",
+          "/DRAM_ADDR_6",
+          "/DRAM_ADDR_7",
+          "/DRAM_ADDR_8",
+          "/DRAM_ADDR_9",
+          "/DRAM_ADDR_BA0",
+          "/DRAM_ADDR_BA1",
+          "/DRAM_ADDR_BA2",
+          "/DRAM_ODT",
+          "/DRAM_nCAS",
+          "/DRAM_nCS",
+          "/DRAM_nRAS",
+          "/DRAM_nRESET",
+          "/DRAM_nWE"
+        ],
+        "pcb_color": "rgb(133, 0, 255)",
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.25,
+        "via_diameter": 0.8,
+        "via_drill": 0.4,
+        "wire_width": 6.0
       }
     ],
     "meta": {
       "version": 2
     },
-    "net_colors": null
+    "net_colors": {
+      "/DRAM_1_VCORE": "rgb(255, 253, 15)",
+      "/DRAM_2_VCORE": "rgb(255, 242, 0)"
+    }
   },
   "pcbnew": {
     "last_paths": {
