@@ -91,3 +91,6 @@
 [submodule "ext/pythondata-cpu-ibex"]
 	path = ext/pythondata-cpu-ibex
 	url = git@github.com:litex-hub/pythondata-cpu-ibex
+[submodule "kicad_parser"]
+	path = kicad_parser
+	url = https://github.com/realthunder/kicad_parser.git
