@@ -548,10 +548,7 @@
     "meta": {
       "version": 2
     },
-    "net_colors": {
-      "/DRAM_1_VCORE": "rgb(255, 253, 15)",
-      "/DRAM_2_VCORE": "rgb(255, 242, 0)"
-    }
+    "net_colors": null
   },
   "pcbnew": {
     "last_paths": {
