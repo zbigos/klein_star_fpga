@@ -20,11 +20,11 @@ devicedict: Dict[str, Dict[str, Tuple[str, float, float]]] = {}
 LAYERS = ["F.Cu", "In1.Cu", "In2.Cu", "In3.Cu", "In4.Cu", "B.Cu"]
 LAYERH = {
     "F.Cu": 0.0175,
-    "In1.Cu": 0.309,
-    "In2.Cu": 0.618,
-    "In3.Cu": 0.927,
-    "In4.Cu": 1.236,
-    "B.Cu": 1.545
+    "In1.Cu": 0.12625,
+    "In2.Cu": 0.70875,
+    "In3.Cu": 0.85325,
+    "In4.Cu": 1.4357,
+    "B.Cu": 1.562
 }
 VIA_PENALTY = 1.6
 
@@ -275,9 +275,9 @@ class Board:
 board = Board(devicedict, netddict, viadict, segmentdict, arcdict)
 
 class matchrule:
-    def __init__(self, board, name):
+    def __init__(self, board, name, length = None):
         self.registered_nets = {}
-        self.required_length = None
+        self.required_length = length
         self.required_deviation = None
         self.boardref = board
         self.name = name
@@ -299,7 +299,8 @@ class matchrule:
             'from': [],
             'to': [],
             'length': [],
-            'deviation': []
+            'deviation': [],
+            'status': []
         }
 
         for mrk, mrv in self.registered_nets.items():
@@ -307,7 +308,8 @@ class matchrule:
             info['from'].append(mrk[1])
             info['to'].append(mrk[2])
             info['length'].append(mrv)
-            info['deviation'].append(mrv - self.required_length)
+            info['deviation'].append(round(mrv - self.required_length, 3))
+            info['status'].append("OK" if abs(mrv - self.required_length) < 0.1 else "FAIL")
 
         print(tabulate(info, headers='keys'))
 
@@ -333,7 +335,7 @@ class matchrule:
 
 
 ## FPGA to DRAM bank 1 matchrules.
-DQ0_matchrule = matchrule(board, "DQ0 matchrule")
+DQ0_matchrule = matchrule(board, "DQ0 matchrule", length = 23.0)
 for datapin in range(0, 8):
     DQ0_matchrule.register_net(f"/DRAM_DATA_{datapin}", "U2", "U1")
 DQ0_matchrule.register_net(f"/DRAM_DQS0_P", "U2", "U1")
@@ -341,7 +343,7 @@ DQ0_matchrule.register_net(f"/DRAM_DQS0_N", "U2", "U1")
 DQ0_matchrule.register_net(f"/DRAM_DM0", "U2", "U1")
 board.add_matchrule(DQ0_matchrule)
 
-DQ1_matchrule = matchrule(board, "DQ1 matchrule")
+DQ1_matchrule = matchrule(board, "DQ1 matchrule", length = 22.0)
 for datapin in range(8, 16):
     DQ1_matchrule.register_net(f"/DRAM_DATA_{datapin}", "U2", "U1")
 DQ1_matchrule.register_net(f"/DRAM_DQS1_P", "U2", "U1")
@@ -349,7 +351,7 @@ DQ1_matchrule.register_net(f"/DRAM_DQS1_N", "U2", "U1")
 DQ1_matchrule.register_net(f"/DRAM_DM1", "U2", "U1")
 board.add_matchrule(DQ1_matchrule)
 
-DQ2_matchrule = matchrule(board, "DQ2 matchrule")
+DQ2_matchrule = matchrule(board, "DQ2 matchrule", length=21.5)
 for datapin in range(16, 24):
     DQ2_matchrule.register_net(f"/DRAM_DATA_{datapin}", "U3", "U1")
 DQ2_matchrule.register_net(f"/DRAM_DQS2_P", "U3", "U1")
@@ -357,7 +359,7 @@ DQ2_matchrule.register_net(f"/DRAM_DQS2_N", "U3", "U1")
 DQ2_matchrule.register_net(f"/DRAM_DM2", "U3", "U1")
 board.add_matchrule(DQ2_matchrule)
 
-DQ3_matchrule = matchrule(board, "DQ3 matchrule")
+DQ3_matchrule = matchrule(board, "DQ3 matchrule", length=18.0)
 for datapin in range(24, 32):
     DQ3_matchrule.register_net(f"/DRAM_DATA_{datapin}", "U3", "U1")
 DQ3_matchrule.register_net(f"/DRAM_DQS3_P", "U3", "U1")
@@ -365,8 +367,7 @@ DQ3_matchrule.register_net(f"/DRAM_DQS3_N", "U3", "U1")
 DQ3_matchrule.register_net(f"/DRAM_DM3", "U3", "U1")
 board.add_matchrule(DQ3_matchrule)
 
-
-U2_CMD_matchrule = matchrule(board, "CMD U2 matchrule")
+U2_CMD_matchrule = matchrule(board, "CMD U2 matchrule", length = 29.5)
 for addrpin in range(0, 16):
     U2_CMD_matchrule.register_net(f"/DRAM_ADDR_{addrpin}", "U2", "U1")
 for bapin in range(0, 3):
@@ -382,11 +383,11 @@ U2_CMD_matchrule.register_net(f"/DRAM_nCAS", "U2", "U1")
 U2_CMD_matchrule.register_net(f"/DRAM_nWE", "U2", "U1")
 U2_CMD_matchrule.register_net(f"/DRAM_nCS", "U2", "U1")
 U2_CMD_matchrule.register_net(f"/DRAM_nRESET", "U2", "U1")
+U2_CMD_matchrule.register_net(f"/DRAM_ODT", "U2", "U1")
 
-#U2_CMD_matchrule.register_net(f"/DRAM_ODT", "U2", "U1")
 board.add_matchrule(U2_CMD_matchrule)
 
-U3_CMD_matchrule = matchrule(board, "CMD U3 matchrule")
+U3_CMD_matchrule = matchrule(board, "CMD U3 matchrule", length=75.0)
 for addrpin in range(0, 16):
     U3_CMD_matchrule.register_net(f"/DRAM_ADDR_{addrpin}", "U3", "U1")
 for bapin in range(0, 3):
@@ -403,9 +404,8 @@ U3_CMD_matchrule.register_net(f"/DRAM_nWE", "U3", "U1")
 U3_CMD_matchrule.register_net(f"/DRAM_nCS", "U3", "U1")
 U3_CMD_matchrule.register_net(f"/DRAM_nRESET", "U3", "U1")
 
-#U2_CMD_matchrule.register_net(f"/DRAM_ODT", "U2", "U1")
+U3_CMD_matchrule.register_net(f"/DRAM_ODT", "U3", "U1")
 board.add_matchrule(U3_CMD_matchrule)
-
 
 reqs = board.extract_requests()
 for r in reqs:
