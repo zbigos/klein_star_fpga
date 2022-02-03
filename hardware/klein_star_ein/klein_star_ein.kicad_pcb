@@ -7064,7 +7064,7 @@
     (tags "BGA 381 0.8")
     (property "Sheetfile" "klein_star_ein.kicad_sch")
     (property "Sheetname" "")
-    (path "/bc4ba41d-b3a2-40c2-80cb-18510154c717")
+    (path "/d1dc22ed-8049-493f-844f-95577de177f8")
     (solder_mask_margin 0.075)
     (attr smd)
     (fp_text reference "U1" (at 0 -9.5) (layer "F.SilkS")
