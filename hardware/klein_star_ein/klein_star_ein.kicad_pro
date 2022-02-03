@@ -44,7 +44,7 @@
         "silk_text_thickness": 0.15,
         "silk_text_upright": false,
         "zones": {
-          "45_degree_only": false,
+          "45_degree_only": true,
           "min_clearance": 0.09999999999999999
         }
       },
@@ -139,7 +139,7 @@
           "drill": 0.4
         }
       ],
-      "zones_allow_external_fillets": false,
+      "zones_allow_external_fillets": true,
       "zones_use_no_outline": true
     },
     "layer_presets": []
@@ -606,6 +606,26 @@
     [
       "e63e39d7-6ac0-4ffd-8aa3-1841a4541b55",
       ""
+    ],
+    [
+      "e3fae5d9-f76f-48f3-a2fd-a498efd8ed89",
+      "Power_converter_1V35"
+    ],
+    [
+      "f99e60a8-4d0f-4df8-a4b8-3d567cc967d7",
+      "Power_converter_1V2"
+    ],
+    [
+      "563e37a2-b9c4-4939-b5a1-9afefb02edb6",
+      "Power_converter_1V2_FPGA"
+    ],
+    [
+      "9bbd7097-5396-4ec4-a968-9d5f6bbfff5c",
+      "Power_converter_3V3"
+    ],
+    [
+      "0e9ad0b3-f7c1-4337-82e1-0637074bbd88",
+      "Power_converter_2V5"
     ]
   ],
   "text_variables": {}
